@@ -1,4 +1,4 @@
-# 📚 BookNotes: Personal Library & Review Manager
+# BookNotes: Personal Library & Review Manager
 
 A full-stack web application designed to help readers persist, organize, and review the most salient points from their favorite books. Inspired by [Derek Sivers' book notes](https://sive.rs/book), this project serves as a centralized hub for digital insights.
 
