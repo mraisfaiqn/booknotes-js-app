@@ -1,0 +1,26 @@
+{
+  "name": "booknotes-js-app",
+  "version": "1.0.0",
+  "description": "A full-stack web application designed to help readers persist, organize, and review the most salient points from their favorite books. Inspired by [Derek Sivers' book notes](https://sive.rs/book), this project serves as a centralized hub for digital insights.",
+  "homepage": "https://github.com/mraisfaiqn/booknotes-js-app#readme",
+  "bugs": {
+    "url": "https://github.com/mraisfaiqn/booknotes-js-app/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mraisfaiqn/booknotes-js-app.git"
+  },
+  "license": "ISC",
+  "author": "Faiq Nichol",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "axios": "^1.13.5",
+    "ejs": "^3.0.2",
+    "express": "^5.2.1",
+    "pg": "^8.18.0"
+  }
+}
