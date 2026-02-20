@@ -1,0 +1,46 @@
+<%- include("partials/header.ejs") %>
+
+  <main class="content-wrapper">
+    <section class="hero">
+      <h2 class="hero-title">Read. Scribble. Repeat.</h2>
+      <p class="hero-description">
+       Below is a collection of everything I’ve been reading lately.
+       You’ll find a quick TL;DR for each, followed by the specific points I didn't want to forget.
+       I’ve included ISBNs for easy searching.
+       This list is always evolving, so come back soon.
+       View by: Best / Newest / Title
+      </p>
+    </section>
+    <hr class="divider">
+    <section class="book-feed">
+      <% if (locals.blogArticles && blogArticles.length > 0) { %>
+        <% blogArticles.forEach(blogArticle => { %>
+          <article class="book-item">
+            <div class="book-date"><%= blogArticle.postDate %></div>
+            <div class="book-content">
+              <div class="book-header-flex">
+                <h3 class="book-title"><%= blogArticle.postTitle %></h3>
+                <form action="/delete-blog" method="POST">
+                  <input type="hidden" name="postID" value="<%= blogArticle.postID %>">
+                  <button type="submit" class="delete-btn">Delete</button>
+                </form>
+              </div>
+              <p class="book-snippet"><%= blogArticle.postSnippet %></p>
+              <p class="book-remark"><%= blogArticle.postRemark %></p>
+            </div>
+          </article>
+        <% }); %>
+      <% } else { %>
+        <article class="book-item">
+          <div class="book-date">TBW</div>
+          <div class="book-content">
+            <h3 class="book-title"><a href="#">Life is but a dream...</a></h3>
+            <p class="book-snippet">Experiment, execute and create what your mind can think of.</p>
+            <p class="book-remark">Recommendations: 10/10</p>
+          </div>
+        </article>
+      <% } %>
+    </section>
+  </main>
+
+<%- include("partials/footer.ejs") %>

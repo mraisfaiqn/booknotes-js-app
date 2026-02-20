@@ -1,0 +1,432 @@
+/* -------------- HEADER -------------- */
+.site-header {
+  display: flex;
+  justify-content: space-between; /* This pushes elements to the edges */
+  align-items: center;           /* Vertically centers everything */
+  padding: 20px 40px;
+  border-bottom: 1px solid #3586ff; /* The clean hairline divider */
+  background-color: #fff;
+}
+
+.user-name {
+  /* Keep your current typography */
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  
+  /* Link behavior */
+  text-decoration: none; /* Removes the underline */
+  color: #333;           /* Your default text color */
+  transition: color 0.2s ease; /* Smooth hover transition */
+  display: inline-block;
+}
+
+/* The Hover Effect */
+.user-name:hover {
+  color: #3586ff; /* The same salmon/coral accent as your blog title */
+}
+
+.app-name {
+  font-family: 'Playfair Display', serif; /* Or any classic Serif font */
+  font-style: italic;
+  font-size: 1.5rem;
+  color: #3586ff; /* That salmon/coral accent color */
+  margin: 0;
+  font-weight: 700;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu a {
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  color: #666;
+  transition: color 0.2s;
+  text-transform: uppercase;
+}
+
+.nav-menu a:hover {
+  color: #3586ff; /* Hover effect matches the logo */
+}
+
+/* -------------- HEADER -------------- */
+
+/* --------------- MAIN --------------- */
+.content-wrapper {
+  max-width: 800px; /* Limits the width for readability */
+  margin: 0 auto;   /* Centers the container */
+  padding: 80px 20px;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  color: #3586ff; /* Accent color */
+  margin-bottom: 10px;
+}
+
+.hero-description {
+  font-family: 'Lora', serif;
+  font-size: 1.2rem;
+  color: #666;
+  line-height: 1.6;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: justify;
+}
+
+.divider {
+  border: 0;
+  border-top: 1px solid #f0f0f0;
+  margin: 40px 0;
+}
+
+.book-item {
+  display: flex;
+  margin-bottom: 40px;
+  gap: 30px;
+}
+
+.book-date {
+  flex: 0 0 100px; /* Fixed width for the dates */
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  color: #aaa;
+  text-transform: uppercase;
+  padding-top: 6px; /* Aligns with the title text top */
+}
+
+.book-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  margin: 0 0 8px 0;
+}
+
+.book-title a {
+  text-decoration: none;
+  color: #222;
+}
+
+.book-title a:hover {
+  color: #3586ff;
+}
+
+.book-snippet {
+  font-family: 'Lora', serif;
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.book-remark {
+  font-family: 'Lora', serif;
+  font-size: 0.75rem;
+  font-style: italic;
+  color: #333;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.book-header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  color: #ccc; /* Very light grey */
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.delete-btn:hover {
+  color: #3586ff; /* Turns the accent color on hover */
+}
+
+/* Ensure post content takes up the rest of the space */
+.book-content {
+  flex-grow: 1;
+}
+/* --------------- MAIN --------------- */
+
+/* --------------- BOOK NOTES --------------- */
+.input-title {
+  font-family: 'Lora', serif; /* Writing in Serif feels more creative/literary */
+  font-size: 2rem; /* Larger than other inputs */
+  border: none;
+  border-bottom: 2px solid #f0f0f0;
+  padding: 10px 0;
+  color: #222;
+  transition: border-color 0.3s ease;
+}
+
+.input-title::placeholder {
+  color: #ddd;
+}
+
+.input-title:focus {
+  outline: none;
+  border-bottom: 2px solid #3586ff; /* Accent color on focus */
+}
+
+/* Adjust the group spacing to make the title feel like the "Lead" */
+.book-form {
+  display: flex;
+  flex-direction: column;
+  gap: 50px; /* Generous vertical spacing between fields */
+  margin-top: 40px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Labels: Matches the "Date" and "Connect" labels */
+.form-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #3586ff;
+}
+
+/* The One-Line Container */
+.form-group-inline {
+  flex-direction: row !important; /* Overrides the default column layout */
+  align-items: baseline;         /* Aligns text bases for a clean look */
+  gap: 20px;                     /* Balanced space between Label, Input, and Button */
+  border-bottom: 1px solid #f0f0f0; /* Optional: adds a divider for the whole row */
+  padding-bottom: 10px;
+}
+
+/* Adjust the Label so it doesn't wrap and has a fixed width */
+.form-group-inline .form-label {
+  flex: 0 0 80px;  /* Labels stay 80px wide so inputs start at the same spot */
+  margin-bottom: 0; 
+}
+
+/* Adjust the Input to remove its own border so it looks like part of the line */
+.form-group-inline .input-sub {
+  flex-grow: 1;
+  border-bottom: none; /* We handle the line in the container or via focus */
+  padding: 0;
+}
+
+/* The Search Button: Minimalist ghost style */
+.search-btn {
+  background: none;
+  border: 1px solid #3586ff;
+  color: #3586ff;
+  padding: 5px 15px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.search-btn:hover {
+  background-color: #3586ff;
+  color: #fff;
+}
+
+.input-summary {
+  font-family: 'Lora', serif; /* Writing in Serif feels more creative/literary */
+  font-size: 1.2rem;
+  line-height: 1.6;
+  border: none;
+  border-left: 2px solid #f0f0f0; /* Subtle vertical line for focus */
+  padding: 10px 20px;
+  min-height: 100px;
+  resize: vertical;
+  color: #333;
+}
+
+.input-summary:focus {
+  outline: none;
+  border-left: 2px solid #3586ff; /* Accent color shows active writing */
+}
+
+/* The Main Brainstorm Area (Tall) */
+.input-main {
+  font-family: 'Lora', serif; /* Writing in Serif feels more creative/literary */
+  font-size: 1.2rem;
+  line-height: 1.6;
+  border: none;
+  border-left: 2px solid #f0f0f0; /* Subtle vertical line for focus */
+  padding: 10px 20px;
+  min-height: 300px; /* Makes it the tallest field */
+  resize: vertical;
+  color: #333;
+}
+
+.input-main:focus {
+  outline: none;
+  border-left: 2px solid #3586ff; /* Accent color shows active writing */
+}
+
+/* The Remarks Field (Short) */
+.input-sub {
+  font-family: 'Lora', serif;
+  font-size: 1rem;
+  padding: 15px 0;
+  border: none;
+  border-bottom: 1px solid #f0f0f0;
+  color: #666;
+}
+
+.input-sub:focus {
+  outline: none;
+  border-bottom: 1px solid #3586ff;
+}
+
+/* Container for the 1-10 scale */
+.book-rating {
+  display: flex;
+  justify-content: space-between;
+  gap: 5px; /* Tiny gap for that clean, segmented look */
+  margin-top: 10px;
+}
+
+/* Hide the actual radio circle */
+.radio-input {
+  display: none;
+}
+
+/* Style the labels as square tiles */
+.rating-button {
+  flex: 1; /* Makes all buttons equal width */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 0;
+  border: 1px solid #f0f0f0; /* Matches your current dividers */
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #999;
+  transition: all 0.2s ease;
+  background-color: #fff;
+}
+
+/* Hover effect */
+.rating-button:hover {
+  border-color: #3586ff;
+  color: #3586ff;
+  background-color: #f9f9fb;
+}
+
+/* The "Selected" state */
+.radio-input:checked + .rating-button {
+  background-color: #3586ff; /* Your signature accent color */
+  color: #fff;
+  border-color: #3586ff;
+  font-weight: 700;
+}
+
+/* The Submit Button */
+.submit-btn {
+  background-color: #3586ff; /* Signature accent color */
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  align-self: flex-start; /* Keeps it from stretching too wide */
+}
+
+.submit-btn:hover {
+  opacity: 0.9;
+}
+/* --------------- BOOK NOTES --------------- */
+
+/* -------------- FOOTER -------------- */
+.site-footer {
+  /*margin-top: 120px; /* Space between body content and footer */
+  /* padding: 80px 20px 40px; */
+  background-color: #ffffff; /* Clean white matches the Evans aesthetic */
+}
+
+.footer-inner {
+  max-width: 800px; /* Aligns with your body content width */
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer-quote p {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 40px;
+}
+
+.footer-divider {
+  border: 0;
+  border-top: 1px solid #f0f0f0;
+  margin-bottom: 30px;
+}
+
+.footer-utility {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.copyright p {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+.social-icons ion-icon {
+  font-size: 1.4rem;
+  color: #999;
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover ion-icon {
+  color: #3586ff; /* The Salmon accent color from your header */
+}
+
+@media (max-width: 600px) {
+  .footer-utility {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+/* -------------- FOOTER -------------- */
