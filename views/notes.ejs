@@ -3,25 +3,30 @@
   <main class="content-wrapper">
     <section class="hero">
       <h2 class="hero-title">Notes</h2>
+      <% if (locals.bookData && bookData.cover) { %>
+        <div class="cover-preview-container">
+          <img src="<%= bookData.cover %>" alt="Book Cover" style="max-width: 150px; margin-bottom: 20px;">
+        </div>
+      <% } %>
     </section>
 
-    <form class="book-form" action="/submit-book" method="POST">
+    <form class="book-form" action="/publish-note" method="POST">
       <div class="form-group form-group-inline">
         <label for="book-isbn" class="form-label">ISBN</label>
-        <input type="number" id="book-isbn" name="isbn" placeholder="ISBN (10 or 13)..." class="input-sub">
-        <button type="button" id="isbn-search-btn" class="search-btn">Search</button>
+        <input type="number" id="book-isbn" name="isbn" placeholder="ISBN (10 or 13)..." class="input-sub" value="<%= locals.bookData ? bookData.isbn : '' %>">
+        <button type="submit" formaction="/search-book" formnovalidate class="search-btn">Search</button>
       </div>
       <div class="form-group">
         <label for="book-title" class="form-label">Book Title</label>
-        <input type="text" id="book-title" name="title" placeholder="Name of the book..." class="input-title" required>
+        <input type="text" id="book-title" name="title" placeholder="Name of the book..." class="input-title" required value="<%= locals.bookData ? bookData.title : '' %>" readonly>
       </div>
       <div class="form-group">
         <label for="book-summary" class="form-label">Summary</label>
-        <textarea id="book-summary" name="summary" placeholder="Scribble a summary of the book..." class="input-summary"></textarea>
+        <textarea id="book-summary" name="summary" placeholder="Scribble a summary of the book..." class="input-summary" required></textarea>
       </div>
       <div class="form-group">
         <label for="book-body" class="form-label">Notes</label>
-        <textarea id="book-body" name="content" placeholder="Type out imaginative thoughts here..." class="input-main"></textarea>
+        <textarea id="book-body" name="notes" placeholder="Type out imaginative thoughts here..." class="input-main"></textarea>
       </div>
 
       <div class="form-group">

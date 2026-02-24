@@ -95,14 +95,47 @@
   margin: 40px 0;
 }
 
+/* The main container for the row */
 .book-item {
   display: flex;
-  margin-bottom: 40px;
-  gap: 30px;
+  gap: 40px; /* Space between sidebar and text */
+  margin-bottom: 80px;
+  align-items: flex-start;
+}
+
+/* The Left Column (Sidebar) */
+.book-sidebar {
+  flex: 0 0 100px; /* Matches your current date width */
+  display: flex;
+  flex-direction: column;
+  /*gap: 15px; /* Space between the date text and the image top */
+}
+
+
+/* The Cover Styling */
+.book-cover img {
+  width: 100%;
+  height: auto;
+  border: 1px solid #f0f0f0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  border-radius: 2px;
+}
+
+/* Placeholder in case ISBN is missing */
+.cover-placeholder {
+  width: 120px;
+  height: 180px;
+  background-color: #f9f9f9;
+  border: 1px dashed #ddd;
+}
+
+/* The Right Column */
+.book-content {
+  flex: 1;
 }
 
 .book-date {
-  flex: 0 0 100px; /* Fixed width for the dates */
+  flex: 0 0 30px; /* Fixed width for the dates */
   font-family: 'Inter', sans-serif;
   font-size: 0.75rem;
   color: #aaa;
@@ -130,7 +163,7 @@
   font-size: 1rem;
   color: #555;
   line-height: 1.5;
-  margin: 0;
+  margin: 0 0 8px 00;
 }
 
 .book-remark {
@@ -139,7 +172,7 @@
   font-style: italic;
   color: #333;
   line-height: 1.5;
-  margin: 0;
+  margin: 0 0 8px 0;
 }
 
 .book-header-flex {

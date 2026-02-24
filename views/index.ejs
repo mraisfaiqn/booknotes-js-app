@@ -8,25 +8,34 @@
        You’ll find a quick TL;DR for each, followed by the specific points I didn't want to forget.
        I’ve included ISBNs for easy searching.
        This list is always evolving, so come back soon.
-       View by: Best / Newest / Title
+       View by: Best/Newest/Title
       </p>
     </section>
     <hr class="divider">
     <section class="book-feed">
-      <% if (locals.blogArticles && blogArticles.length > 0) { %>
-        <% blogArticles.forEach(blogArticle => { %>
+      <% if (locals.bookNotes && bookNotes.length > 0) { %>
+        <% bookNotes.forEach(bookNote => { %>
           <article class="book-item">
-            <div class="book-date"><%= blogArticle.postDate %></div>
+            <div class="book-sidebar">
+              <div class="book-date"><%= bookNote.postDate %></div>
+              <div class="book-cover">
+                <% if (bookNote.postISBN) { %>
+                  <img src="https://covers.openlibrary.org/b/isbn/<%= bookNote.postISBN %>-M.jpg" alt="Cover for <%= bookNote.postTitle %>">
+                <% } else { %>
+                  <div class="cover-placeholder"></div>
+                <% } %>
+              </div>
+            </div>
             <div class="book-content">
               <div class="book-header-flex">
-                <h3 class="book-title"><%= blogArticle.postTitle %></h3>
+                <h3 class="book-title"><%= bookNote.postTitle %></h3>
                 <form action="/delete-blog" method="POST">
-                  <input type="hidden" name="postID" value="<%= blogArticle.postID %>">
+                  <input type="hidden" name="postID" value="<%= bookNote.postID %>">
                   <button type="submit" class="delete-btn">Delete</button>
                 </form>
               </div>
-              <p class="book-snippet"><%= blogArticle.postSnippet %></p>
-              <p class="book-remark"><%= blogArticle.postRemark %></p>
+              <p class="book-remark"><%= bookNote.postRemark %></p>
+              <p class="book-snippet"><%= bookNote.postSnippet %></p>
             </div>
           </article>
         <% }); %>
@@ -35,8 +44,8 @@
           <div class="book-date">TBW</div>
           <div class="book-content">
             <h3 class="book-title"><a href="#">Life is but a dream...</a></h3>
-            <p class="book-snippet">Experiment, execute and create what your mind can think of.</p>
             <p class="book-remark">Recommendations: 10/10</p>
+            <p class="book-snippet">Experiment, execute and create what your mind can think of.</p>
           </div>
         </article>
       <% } %>
