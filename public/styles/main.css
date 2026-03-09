@@ -421,31 +421,6 @@
   margin-bottom: 10px;
 }
 
-/* Container for the cover preview in Edit/Notes */
-.cover-preview-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 30px;
-}
-
-#cover-preview {
-  width: 150px;           /* The width of your 'red rectangle' */
-  aspect-ratio: 2 / 3;    /* Traditional book proportions */
-  object-fit: cover;      /* Prevents stretching if the image is odd-sized */
-  border: 1px solid #f0f0f0;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  border-radius: 2px;
-  background-color: #f9f9f9; /* Shows a light grey box while loading */
-  display: block;
-}
-
-/* Optional: Add a 'spine' effect to the left side to make it look like a book */
-#cover-preview {
-  border-left: 4px solid rgba(0,0,0,0.1);
-}
-
 .book-form {
   display: flex;
   flex-direction: column;
