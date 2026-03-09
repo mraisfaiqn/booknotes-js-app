@@ -29,9 +29,9 @@
             <div class="book-content">
               <div class="book-header-flex">
                 <h3 class="book-title"><%= bookNote.postTitle %></h3>
-                <form action="/delete-blog" method="POST">
+                <form action="/edits" method="GET">
                   <input type="hidden" name="postID" value="<%= bookNote.postID %>">
-                  <button type="submit" class="delete-btn">Delete</button>
+                  <button type="submit" class="edit-btn">Edit</button>
                 </form>
               </div>
               <p class="book-remark"><%= bookNote.postRemark %></p>

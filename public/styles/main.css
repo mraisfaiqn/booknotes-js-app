@@ -181,7 +181,7 @@
   align-items: baseline;
 }
 
-.delete-btn {
+.edit-btn {
   background: none;
   border: none;
   color: #ccc; /* Very light grey */
@@ -192,7 +192,7 @@
   transition: color 0.2s;
 }
 
-.delete-btn:hover {
+.edit-btn:hover {
   color: #3586ff; /* Turns the accent color on hover */
 }
 
@@ -401,6 +401,209 @@
   opacity: 0.9;
 }
 /* --------------- BOOK NOTES --------------- */
+
+/* --------------- EDIT NOTES --------------- */
+.content-wrapper {
+  max-width: 800px; /* Centers the form for readability */
+  margin: 0 auto;
+  padding: 80px 20px;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  color: #3586ff;
+  margin-bottom: 10px;
+}
+
+/* Container for the cover preview in Edit/Notes */
+.cover-preview-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+#cover-preview {
+  width: 150px;           /* The width of your 'red rectangle' */
+  aspect-ratio: 2 / 3;    /* Traditional book proportions */
+  object-fit: cover;      /* Prevents stretching if the image is odd-sized */
+  border: 1px solid #f0f0f0;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  border-radius: 2px;
+  background-color: #f9f9f9; /* Shows a light grey box while loading */
+  display: block;
+}
+
+/* Optional: Add a 'spine' effect to the left side to make it look like a book */
+#cover-preview {
+  border-left: 4px solid rgba(0,0,0,0.1);
+}
+
+.book-form {
+  display: flex;
+  flex-direction: column;
+  gap: 50px; /* Generous vertical spacing between fields */
+  margin-top: 40px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #3586ff;
+}
+
+/* ISBN Row (Symmetrical to search row, but no button) */
+.form-group-inline {
+  flex-direction: row !important;
+  align-items: baseline;
+  gap: 20px;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 10px;
+}
+
+.form-group-inline .form-label {
+  flex: 0 0 80px; /* Keeps label width consistent with notes.ejs */
+  margin-bottom: 0; 
+}
+
+.input-title {
+  font-family: 'Lora', serif;
+  font-size: 2rem;
+  border: none;
+  border-bottom: 2px solid #f0f0f0;
+  padding: 10px 0;
+  color: #222;
+  transition: border-color 0.3s ease;
+  background: transparent;
+}
+
+.input-title:focus {
+  outline: none;
+  border-bottom: 2px solid #3586ff;
+}
+
+.input-summary, .input-main {
+  font-family: 'Lora', serif;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  border: none;
+  border-left: 2px solid #f0f0f0; /* Subtle vertical accent */
+  padding: 10px 20px;
+  color: #333;
+  background: transparent;
+  resize: vertical;
+}
+
+.input-summary { min-height: 100px; }
+.input-main { min-height: 300px; }
+
+.input-summary:focus, .input-main:focus {
+  outline: none;
+  border-left: 2px solid #3586ff;
+}
+
+.input-sub {
+  font-family: 'Lora', serif;
+  font-size: 1rem;
+  padding: 15px 0;
+  border: none;
+  color: #666;
+  background: transparent;
+}
+
+.book-rating {
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.radio-input {
+  display: none;
+}
+
+.rating-button {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 0;
+  border: 1px solid #f0f0f0;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #999;
+  transition: all 0.2s ease;
+  background-color: #fff;
+}
+
+.radio-input:checked + .rating-button {
+  background-color: #3586ff;
+  color: #fff;
+  border-color: #3586ff;
+  font-weight: 700;
+}
+
+.edit-actions {
+  display: flex;
+  gap: 20px; /* Space between Save and Delete */
+  margin-top: 20px;
+}
+
+/* Primary Action: Save Notes (Blue) */
+.submit-btn {
+  background-color: #3586ff;
+  color: white;
+  border: none;
+  padding: 15px 35px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.submit-btn:hover {
+  opacity: 0.9;
+}
+
+/* Secondary Action: Delete Note (Red Outline) */
+.delete-btn-red {
+  background-color: transparent;
+  color: #ff4d4d;
+  border: 1px solid #ff4d4d;
+  padding: 15px 35px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.delete-btn-red:hover {
+  background-color: #ff4d4d;
+  color: white;
+}
+/* --------------- EDIT NOTES --------------- */
 
 /* -------------- FOOTER -------------- */
 .site-footer {

@@ -8,6 +8,7 @@ const port = 3000;
 const API_URL = "https://covers.openlibrary.org/b/isbn/"
 
 let notesArray = [];
+let validBook = false;
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -17,7 +18,23 @@ app.get("/", (req, res) => {
 });
 
 app.get("/notes", (req, res) => {
+  validBook = false;
   res.render("notes.ejs");
+});
+
+app.get("/edits", (req, res) => {
+  const idToFind = parseInt(req.query.postID); // Convert string ID to number
+  
+  // Find the specific note in your array
+  const selectedNote = notesArray.find(note => note.postID === idToFind);
+  console.log(selectedNote);
+  if (selectedNote) {
+    // Pass the found note to edits.ejs
+    res.render("edits.ejs", { bookData: selectedNote });
+  } else {
+    // If not found, go back home
+    res.redirect("/");
+  }
 });
 
 app.post("/search-book", async (req, res) => {
@@ -26,26 +43,33 @@ app.post("/search-book", async (req, res) => {
     const result = await axios.get(`https://openlibrary.org/api/books?bibkeys=ISBN:${searchISBN}&format=json&jscmd=data`);
     const apiData = result.data[`ISBN:${searchISBN}`];
     if (apiData) {
+      validBook = true;
       // Re-render the page with the found data
       res.render("notes.ejs", { bookData: { isbn: searchISBN, cover: apiData.cover["medium"], title: apiData.title } });
       // Handle if there is book data but no book cover image (TBC)
     } else {
+      validBook = false;
       res.render("notes.ejs", { bookData: { isbn: searchISBN, title: "Book not found" } });
     }
   } catch (error) {
     console.log(error);
+    validBook = false;
     res.render("notes.ejs", { bookData: { isbn: searchISBN, title: "URL search failed" } });
   }
 });
 
 app.post("/publish-note", async (req, res) => {
-  const currentDate = new Date();
-  const formatDate = new Intl.DateTimeFormat('en-GB', {day: 'numeric', month: 'short', year: 'numeric'}).format(currentDate);
-  const publishDate = formatDate.toUpperCase();
-  const publishRemark = `ISBN: ${req.body.isbn} | Recommendations: ${req.body.rating}/10`;
-  const publishNote = {postDate: publishDate, postISBN: req.body.isbn, postTitle: req.body.title, postSnippet: req.body.summary, postRemark: publishRemark, postID: currentDate.getTime()};
-  notesArray.unshift(publishNote);
-  res.redirect("/");
+  if (req.body.title && validBook) {
+    const currentDate = new Date();
+    const formatDate = new Intl.DateTimeFormat('en-GB', {day: 'numeric', month: 'short', year: 'numeric'}).format(currentDate);
+    const publishDate = formatDate.toUpperCase();
+    const publishRemark = `ISBN: ${req.body.isbn} | Recommendations: ${req.body.rating}/10`;
+    const publishNote = {postDate: publishDate, postISBN: req.body.isbn, postTitle: req.body.title, postSnippet: req.body.summary, postNotes: req.body.notes, postRating: req.body.rating, postRemark: publishRemark, postID: currentDate.getTime()};
+    notesArray.unshift(publishNote);
+    res.redirect("/");
+  } else {
+    res.render("notes.ejs", { bookData: { title: "Enter a valid book before publishing" } });
+  }
 });
 
 app.listen(port, () => {
