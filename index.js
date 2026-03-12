@@ -14,27 +14,30 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {    
-  res.render("index.ejs", {bookNotes: notesArray});
+  const sortType = req.query.sort;
+  let sortedNotes = [...notesArray];
+
+  if (sortType === "best") {
+    // Descending order: 10 to 1
+    sortedNotes.sort((a, b) => b.postRating - a.postRating);
+  } 
+  else if (sortType === "title") {
+    // Ascending order: A to Z
+    sortedNotes.sort((a, b) => a.postTitle.localeCompare(b.postTitle));
+  } 
+  else if (sortType === "newest") {
+    // Descending order: Newest ID (timestamp) first
+    sortedNotes.sort((a, b) => b.postID - a.postID);
+  } else {
+    sortedNotes.sort((a, b) => b.postID - a.postID);
+  }
+
+  res.render("index.ejs", {bookNotes: sortedNotes});
 });
 
 app.get("/notes", (req, res) => {
   validBook = false;
   res.render("notes.ejs");
-});
-
-app.get("/edits", (req, res) => {
-  const idToFind = parseInt(req.query.postID); // Convert string ID to number
-  
-  // Find the specific note in your array
-  const selectedNote = notesArray.find(note => note.postID === idToFind);
-  console.log(selectedNote);
-  if (selectedNote) {
-    // Pass the found note to edits.ejs
-    res.render("edits.ejs", { bookData: selectedNote });
-  } else {
-    // If not found, go back home
-    res.redirect("/");
-  }
 });
 
 app.post("/search-book", async (req, res) => {
@@ -58,7 +61,7 @@ app.post("/search-book", async (req, res) => {
   }
 });
 
-app.post("/publish-note", async (req, res) => {
+app.post("/publish-note", (req, res) => {
   if (req.body.title && validBook) {
     const currentDate = new Date();
     const formatDate = new Intl.DateTimeFormat('en-GB', {day: 'numeric', month: 'short', year: 'numeric'}).format(currentDate);
@@ -70,6 +73,46 @@ app.post("/publish-note", async (req, res) => {
   } else {
     res.render("notes.ejs", { bookData: { title: "Enter a valid book before publishing" } });
   }
+});
+
+app.get("/edits", (req, res) => {
+  const idToFind = parseInt(req.query.postID); // Convert string ID to number
+  
+  // Find the specific note in your array
+  const selectedNote = notesArray.find(note => note.postID === idToFind);
+  if (selectedNote) {
+    // Pass the found note to edits.ejs
+    res.render("edits.ejs", { bookData: selectedNote });
+  } else {
+    // If not found, go back home
+    res.redirect("/");
+  }
+});
+
+app.post("/save-note", (req, res) => {
+  const idToUpdate = parseInt(req.body.postID);
+
+  const updateNote = notesArray.find(note => note.postID === idToUpdate);
+  if (updateNote) {
+    // Update note and refresh list at home
+    const updatedRemark = `ISBN: ${req.body.isbn} | Recommendations: ${req.body.rating}/10`;
+    updateNote.postSnippet = req.body.summary;
+    updateNote.postNotes = req.body.notes;
+    updateNote.postRating = req.body.rating;
+    updateNote.postRemark = updatedRemark;
+  } else {
+    // If not found, do nothing go back home
+  }
+  res.redirect("/");
+
+});
+
+app.post("/delete-note", (req, res) => {
+  const idToDelete = parseInt(req.body.postID);
+
+  const noteIndex = notesArray.findIndex(note => note.postID === idToDelete);
+  notesArray.splice(noteIndex, 1);
+  res.redirect("/");
 });
 
 app.listen(port, () => {

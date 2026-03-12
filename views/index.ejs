@@ -4,11 +4,14 @@
     <section class="hero">
       <h2 class="hero-title">Read. Scribble. Repeat.</h2>
       <p class="hero-description">
-       Below is a collection of everything I’ve been reading lately.
-       You’ll find a quick TL;DR for each, followed by the specific points I didn't want to forget.
-       I’ve included ISBNs for easy searching.
-       This list is always evolving, so come back soon.
-       View by: Best/Newest/Title
+        Below is a collection of everything I’ve been reading lately.
+        You’ll find a quick TL;DR for each, followed by the specific points I didn't want to forget.
+        I’ve included ISBNs for easy searching.
+        This list is always evolving, so come back soon.
+        View by: 
+        <a href="/?sort=best" class="sort-link">Best</a> / 
+        <a href="/?sort=newest" class="sort-link">Newest</a> / 
+        <a href="/?sort=title" class="sort-link">Title</a>
       </p>
     </section>
     <hr class="divider">
@@ -31,7 +34,7 @@
                 <h3 class="book-title"><%= bookNote.postTitle %></h3>
                 <form action="/edits" method="GET">
                   <input type="hidden" name="postID" value="<%= bookNote.postID %>">
-                  <button type="submit" class="edit-btn">Edit</button>
+                  <button type="submit" class="edit-btn">Edits</button>
                 </form>
               </div>
               <p class="book-remark"><%= bookNote.postRemark %></p>

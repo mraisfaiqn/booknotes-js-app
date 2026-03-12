@@ -89,6 +89,18 @@
   text-align: justify;
 }
 
+.sort-link {
+  color: #3586ff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.sort-link:hover {
+  text-decoration: underline;
+  color: #333;
+}
+
 .divider {
   border: 0;
   border-top: 1px solid #f0f0f0;
@@ -294,7 +306,7 @@
   border: none;
   border-left: 2px solid #f0f0f0; /* Subtle vertical line for focus */
   padding: 10px 20px;
-  min-height: 100px;
+  min-height: 110px;
   resize: vertical;
   color: #333;
 }
@@ -485,7 +497,7 @@
   resize: vertical;
 }
 
-.input-summary { min-height: 100px; }
+.input-summary { min-height: 110px; }
 .input-main { min-height: 300px; }
 
 .input-summary:focus, .input-main:focus {
